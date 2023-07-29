@@ -13,7 +13,7 @@ pipeline {
                sh 'chmod +x demo3/build.sh'
                withCredentials([string(credentialsId: 'slac-cred', variable: 'API_KEY')]) {
                   sh '''
-                     ./m2/demo3/build.sh
+                     ./demo3/build.sh
                   '''
                }
             }
