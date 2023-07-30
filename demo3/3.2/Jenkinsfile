@@ -29,7 +29,7 @@ pipeline {
       success {
          archiveArtifacts 'test-results.txt'
          slackSend channel: '#builds',
-                   message: "Release ${env.RELEASE}, success: ${currentBuild.fullDisplayName}."
+                   message: "Release ${env.RELEASE}, success: ${currentBuild.fullDisplayName} ${env.JOB_NAME} ${env.BUILD_NUMBER} ${env.BUILD_URL}."
       }
    }
 }
