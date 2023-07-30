@@ -10,7 +10,7 @@ pipeline {
             }
             steps {
                echo "Building release ${RELEASE} with log level ${LOG_LEVEL}..."
-               sh 'chmod +x demo3/build.sh'
+               sh 'chmod +x project_template/demo3/build.sh'
                withCredentials([string(credentialsId: 'slac-cred', variable: 'API_KEY')]) {
                   sh '''
                      ./demo3/build.sh
