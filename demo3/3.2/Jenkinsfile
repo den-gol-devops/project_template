@@ -10,8 +10,8 @@ pipeline {
             }
             steps {
                echo "Building release ${RELEASE} with log level ${LOG_LEVEL}..."
-               sh 'chmod +x demo3/build.sh'
-               withCredentials([string(credentialsId: 'slac-cred', variable: 'API_KEY')]) {
+               sh 'chmod +x ./demo3/build.sh'
+               withCredentials([string(credentialsId: 'slack-cred1', variable: 'API_KEY')]) {
                   sh '''
                      ./demo3/build.sh
                   '''
@@ -28,8 +28,8 @@ pipeline {
    post {
       success {
          archiveArtifacts 'test-results.txt'
-         slackSend channel: '#builds',
-                   message: "Release ${env.RELEASE}, success: ${currentBuild.fullDisplayName}."
+         slackSend channel: '#jenkins-test',
+                   message: "Release ${env.RELEASE}, success: ${currentBuild.fullDisplayName} ${env.JOB_NAME} ${env.BUILD_NUMBER} ${env.BUILD_URL}."
       }
    }
 }
